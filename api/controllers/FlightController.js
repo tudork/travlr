@@ -15,7 +15,8 @@ module.exports = {
   var adultCount = req.query.adultCount;
     if(typeof adultCount == 'undefined')
       adultCount = 1;
-
+  console.log(req.url)
+  
 var options = {
   uri: 'https://www.googleapis.com/qpxExpress/v1/trips/search?key=AIzaSyAG_ezjATDF0it8-E8oPe6ycBKjiGhXOjU',
   method: 'POST',
