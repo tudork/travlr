@@ -31,11 +31,13 @@ module.exports.routes = {
   * `assets` directory)                                                      *
   *                                                                          *
   ***************************************************************************/
-
+ '/': function(req, res, next) {
+    res.sendfile('./assets/index.html');
+} ,
   'GET /flight/:to/:from/:departing' : 'FlightController.returnOneWayFlight',
   'GET /flight/:to/:from/:departing/:returning' : 'FlightController.returnRoundTripFlight',
   'GET /flight/:to/:from/:departing/temperature/:temp' : 'FlightController.returnOneWayFlight'
-  
+ 
   
 
   /***************************************************************************
