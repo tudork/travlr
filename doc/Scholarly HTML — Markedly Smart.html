@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<!-- saved from url=(0031)http://scholarly.vernacular.io/ -->
+<html lang="en-GB"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="viewport" content="width=device-width">
+    <title>TRAVLR</title>
+    <link rel="stylesheet" href="./Scholarly HTML — Markedly Smart_files/scholarly.css">
+    <link rel="stylesheet" href="./Scholarly HTML — Markedly Smart_files/prism-coy.css">
+    <script src="./Scholarly HTML — Markedly Smart_files/prism.js" defer=""></script>
+  <style type="text/css"></style></head>
+  <body prefix="schema: http://schema.org/ xsd: http://www.w3.org/2001/XMLSchema# sa: https://ns.science.ai/">
+    <header>
+      <p class="title">Travlr</p>
+      <p class="subtitle">as SkyTreck</p>
+    </header>
+    <article id="what" typeof="schema:ScholarlyArticle" resource="#">
+      <h1>Travlr</h1>
+      <section>
+        <ol>
+          <li property="schema:author" typeof="sa:ContributorRole">
+            <a property="schema:author" href="http://github.com/tudork" typeof="schema:Person">
+              <span property="schema:givenName">Tudor</span>
+              <span property="schema:familyName">Bilan</span>
+            </a>
+            <a href="http://scholarly.vernacular.io/#scienceai" property="sa:roleAffiliation" resource="http://science.ai/">a</a>
+            <sup property="sa:roleContactPoint" typeof="schema:ContactPoint">
+              <a property="schema:email" href="mailto:tudor.bilan180@gmail.com" title="corresponding author">✉</a>
+            </sup>
+          </li>
+          <li property="schema:contributor" typeof="sa:ContributorRole">
+            <a property="schema:contributor" href="https://github.com/bogdandumitru" typeof="schema:Person">
+              <span property="schema:givenName">Bogdan</span>
+              <span property="schema:familyName">Dumitru</span>
+            </a>
+            <a href="http://scholarly.vernacular.io/#scienceai" property="sa:roleAffiliation" resource="http://science.ai/">a</a>
+          </li>
+        </ol>
+        
+      </section>
+
+      <section typeof="sa:Abstract" id="abstract">
+        <h2>Motivatie</h2>
+        <p text-align="center">
+          “Everything Should Be Made as Simple as Possible, But Not Simpler.” 
+Albert Einstein
+</p>
+	<p>Motivatia noastra pentru alegerea acestui proiect este crearea unui spatiu minimal, intuitiv, usor de folosit de catre orice utilizator care doreste sa afle informatii despre zborurile din intreaga lume. Clientul nu va fi asaltat de optiuni nenumarate decat la cererea acestuia. Aplicatia in sine insa, nu va fi atat de simplista.
+
+        </p>
+      </section>
+      <section typeof="sa:MaterialsAndMethods" id="motivation">
+        <h2>Obiective</h2>
+        Punerea la dispozitie( catre vizitatorul site-ul) a unei largi game de informatii privind zborurile din intreaga lume. 
+		Utilizatorul va avea posibilitatea filtrarii datelor in functie de o intreaga colectie de criterii, 
+		fiindu-i pusa la dispozitie si o interfata atractiva, simpla, usor de folosit. 
+        
+        <p>
+          Front-end:
+        </p>
+        <ul>
+		
+          <li>
+            HTML5
+          </li>
+          <li>
+            CSS3
+          </li>
+          <li>
+            Bootstrap
+          </li>
+          <li>
+            Vue.js
+          </li>
+          <li>
+            Leaflet.js(Mapbox)
+          </li>
+        </ul>
+		<p>
+          Back-end:
+        </p>
+        <ul>
+		
+          <li>
+            Sails.js(Express)
+          </li>
+          
+        </ul>
+		<p>
+          Third-party APIs:
+        </p>
+        <ul>
+		
+          <li>
+            QPX Express Flights API
+          </li>
+          <li>
+            OpenStreetMap TileSet API
+          </li>
+		  <li>
+            DarkSky Forecast API
+          </li>
+        </ul>
+		
+        
+      </section>
+      <section typeof="sa:Results" id="definition">
+        <h2>Arhitectura aplicatiei:</h2>
+        <p>
+          Pagina principala va fi un simplu cadru menit sa faca utiliztorul comod in timpul petrecut in aplicatie. 
+		  Mai departe, acesta va avea posibilitatea un standard search, simplu asezat in pagina, in urma caruia ii 
+		  vor fi afisate informatiile filtrate by standard search. Acestea vor putea fi ordonate prin click pe numele 
+		  coloanei, tabelul fiind de asemenea sumar descris. Fiecare zbor(linie) va avea posibilitatea extinderii de 
+		  informatii la dorinta utilizatorului.
+ De asemenea, clientul va avea acces la un advanced search, care va contine si informatii meteorologice. Toate criteriile unui search vor putea fi memorate de catre 
+ utilizator, in cazul in care acesta decide sa-si creeze cont, prin intermediul butonului specific, oricand disponibil intr-o pozitie evidenta.
+ Fiecare zbor (linie rezultat) va avea si optiunea “Detalii harta” in care se poate observa traseul pe harta al respectivei
+ rute.
+
+        </p>
+        <p>
+		Aplicatia este formata dintr-un backend REST API realizat cu ajutorul framework-ului Sails.js care reprezinta un proxy pentru API-ul QPX furnizat de Google. Acesta asteapta request-uri de forma
+		 /flight/{from}/{to}/{departureDate} sau /flight/{from}/{to}/{departureDate}/{returnDate} si cu parametri optionali specificati in query string.
+		API-ul nostru preia informatiile din request si creeaza request body-ul de tip json pentru QPX. Raspunsul de la QPX este filtrat astfel incat json-ul returnat
+		este redus semnificativ si apoi transmis spre client.
+		</p>
+		<p>
+		Partea de client este realizata cu ajutorul framework-ului Vue.js si contine un formular de cautare a caror date vor fi transmise in requestul catre API. Raspunsurile vor
+		fi afisate cu posibilitatea sortarii si filtrarii lor, operatii care vor fi realizate pe partea de client. Deasemenea va fi posibila vizualizarea unei rute pe harta din fundal.
+		Harta este realizata cu ajutorul librariei Leaflet.js (Mapbox).
+		</p>
+	
+	<h2>Documentatia API</h2>
+	<p>
+	Request format: /flight/{from}/{to}/{departureDate}  for OneWay flights
+	Request format: /flight/{from}/{to}/{departureDate}/{returnDate}  for RoundTrip flights
+	
+		<ul>
+		<li>from - string - required - origin location</li>
+		<li>to   - string - required - destination location </li>
+		<li>departureDate - string - required - departure date (format YYYY/MM/DD)</li>
+		<li>returnDate - string - required - return date (format YYYY/MM/DD)</li>
+		<li>adultCount - integer - optional - number of adults</li>
+	    <li>childCount - integer - optional - number of childs</li>
+		<li>infantInLapCount - integer - optional - number of infants in lap</li>
+		<li>infantInSeat - integer - optional - number of infants in seat</li>
+		<li>seniorCount - integer - optional - number of seniors</li>
+		<li>maxStops - integer - optional - number of stops (max 3)</li>
+		<li>maxConnectionTime - integer - optional - maximmum connection time</li>
+		<li>preferredCabin - string - optional - preffered cabin ( options: None, Coach, Premium Class, Business, First Class)</li>
+		
+		<li>earliestTime - string - optional - earliest hour </li>
+		<li>latestTime - string - optional - latest hour</li>
+		<li>permittedCarrier - string array - optional - permitted carriers (delimited by ',')</li>
+		<li>prohibitedCarrier - string array - optional - prohibited carriers (delimited by ',')</li>
+		<li>maxPrice - integer - optional - max total price</li>
+		<li>saleCountry - string - optional - country price format</li>
+		<li>refundable - boolean - optional - refundable tickets</li>
+		<li>solutions - integer - optional - number of adults (max 500)</li>
+		
+		</ul>
+		</p>
+    </footer>
+  
+
+</body></html>
