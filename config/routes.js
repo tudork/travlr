@@ -33,7 +33,9 @@ module.exports.routes = {
   ***************************************************************************/
 
   'GET /flight/:to/:from/:departing' : 'FlightController.returnOneWayFlight',
-  'GET /flight/:to/:from/:departing/:returning' : 'FlightController.returnRoundTripFlight'
+  'GET /flight/:to/:from/:departing/:returning' : 'FlightController.returnRoundTripFlight',
+  'GET /flight/:to/:from/:departing/temperature/:temp' : 'FlightController.returnOneWayFlight'
+ 
   
 
   /***************************************************************************

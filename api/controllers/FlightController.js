@@ -64,10 +64,42 @@ var options = {
 request(options, function (error, response, body) {
   console.log(response.statusCode)
   if (!error && response.statusCode == 200) {
-    return res.json({
-		response: body
-		
-	});
+function ob(pret,companie,plecare,sosire,durata,traseu)
+{
+        this.pret=pret;
+        this.companie=companie;
+        this.plecare=plecare;
+        this.sosire=sosire;
+        this.durata=durata;
+		this.traseu=traseu;
+}
+var rezultate= new Array();
+   for(var trip in body.trips.tripOption)
+   {
+        var pre=body.trips.tripOption[trip].saleTotal;
+        var durat=body.trips.tripOption[trip].slice[0].duration;
+        var plecar=body.trips.tripOption[trip].slice[0].segment[0].leg[0].departureTime;
+		if(plecar.length)
+            plecar=plecar.slice(11,16);
+        var compani='';
+		var trase=new Array();
+        for(var seg in body.trips.tripOption[trip].slice[0].segment)
+        {
+            compani=compani+'+'+body.trips.tripOption[trip].slice[0].segment[seg].flight.carrier;
+			var c=body.trips.tripOption[trip].slice[0].segment[seg].leg[0].origin;
+			c=c+'->'+body.trips.tripOption[trip].slice[0].segment[seg].leg[0].destination;
+			trase.push(c);
+        }
+        var sosir=body.trips.tripOption[trip].slice[0].segment[seg].leg[0].arrivalTime;
+		if(sosir.length)
+            sosir=sosir.slice(11,16);
+        var v = new ob(pre,compani,plecar,sosir,durat,trase);
+        rezultate.push(v);
+   }
+return res.json({
+  respone:rezultate
+  
+ });
 	
 	
   }
