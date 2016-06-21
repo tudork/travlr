@@ -19,8 +19,7 @@ from - string - required - origin location
 to - string - required - destination location
 departureDate - string - required - departure date (format YYYY/MM/DD)
 returnDate - string - required - return date (format YYYY/MM/DD)
-adultCount - integer - optional - number of adults
-childCount - integer - optional - number of childs
+adultCount - integer - optional - number of adultschildCount - integer - optional - number of childs
 infantInLapCount - integer - optional - number of infants in lap
 infantInSeat - integer - optional - number of infants in seat
 seniorCount - integer - optional - number of seniors
@@ -35,4 +34,7 @@ maxPrice - integer - optional - max total price
 saleCountry - string - optional - country price format
 refundable - boolean - optional - refundable tickets
 solutions - integer - optional - number of adults (max 500)
+
+##Request-Response QPX
+https://www.youtube.com/watch?v=oYbdibPzuMA
 
